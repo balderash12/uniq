@@ -6,6 +6,8 @@ import { Shield, Loader2 } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
+import { API_BASE_URL } from "@/config/api";
+
 
 const GOOGLE_CLIENT_ID = "859859771398-erv8s8o5kdvib9k0n1cu8eau2u9l6u4b.apps.googleusercontent.com";
 
@@ -40,7 +42,7 @@ export default function Login() {
       setAuthError(null);
 
       // Send the credential to backend
-      const res = await fetch("http://localhost:8000/auth/google", {
+      const res = await fetch("${API_BASE_URL}/auth/google", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

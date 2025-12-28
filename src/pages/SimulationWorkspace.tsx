@@ -28,6 +28,9 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
+import { API_BASE_URL } from "@/config/api";
+
+
 
 interface Cell {
   id: string;
@@ -485,7 +488,7 @@ export default function SimulationWorkspace() {
     if (language === "qasm") {
       try {
         const response = await fetch(
-          "http://localhost:8000/transpile/simulation/run",
+          "${API_BASE_URL}/transpile/simulation/run",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -542,7 +545,7 @@ export default function SimulationWorkspace() {
 
     // Non-QASM cells use the generic multi-language execution endpoint.
     try {
-      const response = await fetch("http://localhost:8000/execution/run-code", {
+      const response = await fetch("${API_BASE_URL}/execution/run-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -617,7 +620,7 @@ export default function SimulationWorkspace() {
       }
 
       const mode = transpilerMode === "safe-rl" ? "safe-rl" : "static";
-      const response = await fetch("http://localhost:8000/transpile/simulation/run", {
+      const response = await fetch("${API_BASE_URL}/transpile/simulation/run", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

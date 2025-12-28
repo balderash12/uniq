@@ -13,6 +13,7 @@ type AuthContextType = {
   isAuthenticated: boolean;
   devBypassLogin: () => void;
 };
+import { API_BASE_URL } from "@/config/api";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -24,7 +25,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const bootstrap = async () => {
       try {
-        const res = await fetch("http://localhost:8000/auth/me", {
+        const res = await fetch("${API_BASE_URL}/auth/me", {
           credentials: "include",
         });
         if (res.ok) {
@@ -43,7 +44,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const loginWithEmail = async (email: string, password: string) => {
-    const res = await fetch("http://localhost:8000/auth/login", {
+    const res = await fetch("${API_BASE_URL}/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -55,7 +56,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = async () => {
-    await fetch("http://localhost:8000/auth/logout", {
+    await fetch("${API_BASE_URL}/auth/logout", {
       method: "POST",
       credentials: "include",
     });

@@ -26,6 +26,9 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { API_BASE_URL } from "@/config/api";
+
+
 
 const languageTemplates: Record<string, string> = {
   qasm: `OPENQASM 2.0;
@@ -191,7 +194,7 @@ export default function CloudConnect() {
     const fetchBackends = async () => {
       setLoadingBackends(true);
       try {
-        const res = await fetch("http://localhost:8000/hardware/list");
+        const res = await fetch("${API_BASE_URL}/hardware/list");
         if (!res.ok) throw new Error(await res.text());
         const data = await res.json();
         const list = (data.backends || []) as BackendOption[];
@@ -252,7 +255,7 @@ export default function CloudConnect() {
     toast.info("Submitting circuit to IBM Quantum...");
 
     try {
-      const response = await fetch("http://localhost:8000/execution/ibm/run", {
+      const response = await fetch("${API_BASE_URL}/execution/ibm/run", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -289,7 +292,7 @@ export default function CloudConnect() {
       jobIds.forEach((jobId) => {
         const poll = async () => {
           try {
-            const statusRes = await fetch(`http://localhost:8000/execution/status/${jobId}`);
+            const statusRes = await fetch(`${API_BASE_URL}/execution/status/${jobId}`);
             if (!statusRes.ok) throw new Error(await statusRes.text());
             const payload = await statusRes.json();
             const statusName = (payload.status || "unknown").toString();

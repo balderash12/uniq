@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { API_BASE_URL } from "@/config/api";
+
 
 interface Message {
   id: string;
@@ -261,7 +263,7 @@ export function AIAssistant({ isOpen, onClose }: AIAssistantProps) {
       const savedKeys = localStorage.getItem("user-api-keys");
       const apiKeys = savedKeys ? JSON.parse(savedKeys) : {};
 
-      const res = await fetch("http://localhost:8000/llm/chat", {
+      const res = await fetch('{API_BASE_URL}/llm/chat', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

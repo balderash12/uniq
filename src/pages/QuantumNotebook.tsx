@@ -59,6 +59,8 @@ import {
 } from "@/components/ui/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { API_BASE_URL } from "@/config/api";
+
 
 interface Cell {
   id: string;
@@ -208,7 +210,7 @@ export default function QuantumNotebook() {
     
     setIsPreparingEnv(true);
     try {
-      const response = await fetch("http://localhost:8000/execution/prepare-env", {
+      const response = await fetch("${API_BASE_URL}/execution/prepare-env", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -259,7 +261,7 @@ export default function QuantumNotebook() {
     setTerminalRunning(true);
     try {
       const response = await fetch(
-        "http://localhost:8000/execution/run-code",
+        "${API_BASE_URL}/execution/run-code",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -424,7 +426,7 @@ export default function QuantumNotebook() {
     );
 
     try {
-      const response = await fetch("http://localhost:8000/execution/run-code", {
+      const response = await fetch("${API_BASE_URL}/execution/run-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
