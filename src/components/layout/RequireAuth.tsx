@@ -2,6 +2,8 @@ import { Navigate, useLocation } from "react-router-dom";
 import { ReactNode } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 
+console.log("VITE_GOOGLE_CLIENT_ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
+
 export const RequireAuth = ({ children }: { children: ReactNode }) => {
   const { isAuthenticated, loading } = useAuth();
   const location = useLocation();

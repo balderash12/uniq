@@ -14,6 +14,8 @@ export default function Account() {
     await logout();
     toast.info("Logged out");
   };
+  
+console.log("VITE_GOOGLE_CLIENT_ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
 
   return (
     <div className="min-h-screen p-8 animate-fade-in">

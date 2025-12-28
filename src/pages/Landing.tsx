@@ -5,6 +5,8 @@ import logoLight from "@/assets/logo-light.png";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useNavigate } from "react-router-dom";
 
+console.log("VITE_GOOGLE_CLIENT_ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
+
 export default function Landing() {
   const { setTheme } = useTheme();
   const logo = logoLight;

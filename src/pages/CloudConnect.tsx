@@ -28,6 +28,7 @@ import {
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { API_BASE_URL } from "@/config/api";
 
+console.log("VITE_GOOGLE_CLIENT_ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
 
 
 const languageTemplates: Record<string, string> = {

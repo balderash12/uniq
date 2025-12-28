@@ -9,7 +9,8 @@ import { toast } from "sonner";
 import { API_BASE_URL } from "@/config/api";
 
 
-const GOOGLE_CLIENT_ID = "859859771398-erv8s8o5kdvib9k0n1cu8eau2u9l6u4b.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = "184384572282-4ct3kas7rp7rcu1263u67viu8ms3rk7a.apps.googleusercontent.com";
+console.log("VITE_GOOGLE_CLIENT_ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
 
 // TypeScript declaration for Google Identity Services
 declare global {

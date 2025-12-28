@@ -33,6 +33,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 
+console.log("VITE_GOOGLE_CLIENT_ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
+
 const mainNavItems = [
   { icon: Home, label: "Home", path: "/home" },
   { icon: Search, label: "Search", path: "/search" },
