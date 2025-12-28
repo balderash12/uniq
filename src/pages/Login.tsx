@@ -43,7 +43,7 @@ export default function Login() {
       setAuthError(null);
 
       // Send the credential to backend
-      const res = await fetch("${API_BASE_URL}/auth/google", {
+      const res = await fetch(`${API_BASE_URL}/auth/google`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
