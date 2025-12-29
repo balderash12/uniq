@@ -15,7 +15,7 @@ class AuthService:
     def __init__(self):
         self.sessions: Dict[str, Dict] = {}
         self.users: Dict[str, Dict] = {}  # keyed by email for quick access
-        self.google_client_id = "859859771398-erv8s8o5kdvib9k0n1cu8eau2u9l6u4b.apps.googleusercontent.com"
+        self.google_client_id = settings.GOOGLE_CLIENT_ID #"859859771398-erv8s8o5kdvib9k0n1cu8eau2u9l6u4b.apps.googleusercontent.com"
 
     def _now_iso(self):
         return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
@@ -64,8 +64,24 @@ class AuthService:
             token_info = response.json()
             
             # Verify the audience matches our client ID
-            if token_info.get("aud") != self.google_client_id:
-                return None
+            ## if token_info.get("aud") != self.google_client_id:
+            ##    return None
+
+            
+            print("Google token aud:", token_info.get("aud"))
+            print("Expected aud:", self.google_client_id)
+
+            # Use THIS apparently
+            aud = token_info.get("aud")
+            # aud may be a string or a list
+            if isinstance(aud, list):
+                if self.google_client_id not in aud:
+                    return None
+            else:
+                if aud != self.google_client_id:
+                    return None
+
+
             
             # Extract user information
             email = token_info.get("email")
