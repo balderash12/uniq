@@ -12,7 +12,10 @@ origins = [o.strip() for o in frontend_origin_env.split(",")]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,             # Accept both ports for dev
+    allow_origins=["https://uniq-testing-2.onrender.com",
+        "http://localhost:3000", 
+        "http://localhost:8080",
+        "https://uniq-nine.vercel.app"],             # Accept both ports for dev
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
